@@ -11,30 +11,15 @@ App.SprintLoad = function() {
   }
 
   function _setupDOM() {
-    dom.$keyboardBody       = $('.js-listen-to-keyboard');
     dom.$contentPlaceholder = $('.bodyDOM');
     dom.$headerSprintForm   = $('.js-header__sprint-select');
     dom.$headerSprintNum    = $('.js-sprint-select__weeknum');
     dom.$headerSprintButton = $('.js-quick__search-value');
-    dom.$input              = $('input');
   }
 
   function _addEventListeners() {
-    dom.$input.on( 'keyup', stopPropagation );
-    dom.$keyboardBody.on( 'keyup', onSprintKeyUp );
     dom.$headerSprintButton.on( 'click', onSprintSelectChange );
     dom.$headerSprintForm.on( 'submit', onSprintFormSubmitted );
-  }
-
-  // TODO: [BUG] - Submit is triggered before click event, why i don't know.
-  function onSprintKeyUp(event) {
-    var code = (event.keyCode || event.which);
-    dom.$headerSprintButton.each(function() {
-      var item = $(this);
-      if( code == item.data('keycode') ) {
-        item.trigger('click');
-      }
-    });
   }
 
   function onSprintSelectChange() {
@@ -60,10 +45,6 @@ App.SprintLoad = function() {
         App.Template.renderPage(dom.$contentPlaceholder, data, sprintTemplate);
       }
     } );
-  }
-
-  function stopPropagation(event) {
-    event.stopPropagation();
   }
 
   return {
