@@ -1,4 +1,3 @@
-function allTemplates() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['company'] = template({"1":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
@@ -62,4 +61,3 @@ templates['sprint'] = template({"1":function(depth0,helpers,partials,data) {
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"useData":true});
-}
