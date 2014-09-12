@@ -1,0 +1,152 @@
+  // Settings, variables and mixins for this particular project.
+//
+// e.g. $color-alert-background: #f00;
+
+// Turns on grid and breakpoint gauge
+$development: false; // true, false
+
+// ---------------------------------------------------------------------------
+// Custom helper functions
+
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+// ---------------------------------------------------------------------------
+// Susy grid settings
+
+// Breakpoints (minimum widths!)
+$bp-s-m:    400px;
+$bp-m-l:    650px;
+$bp-l-xl:   960px;
+$bp-xl-xxl: 1280px;
+
+// Columns
+$cols-s:   4;
+$cols-m:   4;
+$cols-l:   8;
+$cols-xl:  12;
+$cols-xxl: 12;
+
+// Layouts
+// $layout-s is not necessary due to a mobile-first approach
+$layout-ie-fallback: "lt-ie9";
+
+$layout-m:   join($bp-s-m, $cols-m);
+$layout-l:   join(($bp-m-l, $cols-l), $layout-ie-fallback); // Layout with IE fallback
+$layout-xl:  join($bp-l-xl, $cols-xl);
+$layout-xxl: join($bp-xl-xxl, $cols-xxl);
+
+// Store all layouts for this project
+$layouts: $layout-m $layout-l $layout-xl $layout-xxl;
+
+// Default grid settings
+$total-columns: $cols-s;
+$column-width: 60px;
+$gutter-width: 30px;
+$grid-padding: $gutter-width / 3;
+
+// $container-style: magic; // "static", "fluid", "magic"
+
+// ---------------------------------------------------------------------------
+// Variables
+
+// Base font size
+$font-base-size: 62.5%;
+$font-base-size-px: (16px / 100) * strip-units($font-base-size); // 100% of the font-size in default font size
+
+// Typograhpy (create a sane font-stack)
+$font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-display: Ubuntu, 'Helvetica Neue', 'Arial Bold', sans-serif;
+
+// Colors
+$color-text: #777;
+$color-display: #333;
+$color-selection: #FD0;
+$color-selection-bg: #1BB2E0;
+
+$color-border: #aaa;
+
+$color-link: #0BE;
+$color-link-hover: lighten($color-link, 15%);
+
+// ---------------------------------------------------------------------------
+// Sprites
+
+// $icons: sprite-map("icons/*.png",
+//  $icons-arrow-position: 100%,
+//  $icons-arrow-spacing: 50px
+// );
+
+// ---------------------------------------------------------------------------
+// Browser prefixes and CSS support
+
+// $experimental-support-for-mozilla:  false;
+// $experimental-support-for-webkit:     false;
+// $experimental-support-for-opera:    false;
+// $experimental-support-for-microsoft: false;
+// $experimental-support-for-khtml:    false;
+
+// $support-for-original-webkit-gradients: false;
+
+// ---------------------------------------------------------------------------
+// Mixins
+
+// Rem mixin with pixel fallback
+@mixin rem($property, $px-values) {
+  // Convert the baseline into rems
+  $baseline-rem: $font-base-size-px / 1rem;
+
+  // Print the first line in pixel values
+  #{$property}: $px-values;
+
+  // If there is only one (numeric) value, return the property/value line for it.
+  @if type-of($px-values) == "number" {
+    #{$property}: $px-values / $baseline-rem;
+  } @else {
+    // Create an empty list that we can dump values into
+    $rem-values: unquote("");
+
+    @each $value in $px-values {
+      // If the value is zero, return 0
+      @if $value == 0 {
+        $rem-values: append($rem-values, $value); }
+      @else {
+        $rem-values: append($rem-values, $value / $baseline-rem);
+      }
+    }
+
+    // Return the property and its list of converted values
+    #{$property}: $rem-values;
+  }
+}
+
+// Font-size wrapper using our rem converter mixin
+@mixin font-size($px-value) {
+  @include rem(font-size, $px-value);
+}
+
+// Custom mixin doing a block of code in each layout breakpoint
+@mixin each-layout {
+  @each $layout in $layouts {
+    @include at-breakpoint($layout) {
+      @content;
+    }
+  }
+}
+
+// Custom mixin (wrapper) for generating Susy grid backgrounds
+@mixin grid-background {
+  @include susy-grid-background;
+
+  @include each-layout {
+    @include susy-grid-background;
+  }
+}
+
+// Check for development flag and show grid if set to true
+@mixin show-grid-if-enabled {
+  @if $development == true {
+    @include grid-background;
+  }
+}

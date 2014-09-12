@@ -1,0 +1,29 @@
+<div class="icebox__container">
+  {{#each icebox}}
+  {{>story}}
+  {{/each}}
+</div>
+<hr>
+<div class="backlog__container">
+  <div class="backlog__todo">
+    {{#each backlog.todo}}
+    {{>story}}
+    {{/each}}
+  </div>
+  <div class="backlog__inprogress">
+    {{#each backlog.inProgress}}
+    {{>story}}
+    {{/each}}
+  </div>
+  <div class="backlog__qa">
+    {{#each backlog.qa}}
+    {{>story}}
+    {{/each}}
+  </div>
+</div>
+<hr>
+<div class="done__container">
+  {{#each done}}
+  {{>story}}
+  {{/each}}
+</div>

@@ -1,0 +1,14 @@
+<article class="navigation__quick">
+  <form class="quick__search" action="/services/search" method="GET">
+    <input type="text" name="quick__search-value">
+  </form>
+  <menu class="navigation__quick">
+    <h1>Kunder</h1>
+    <!-- Idea: Word cloud, size based on activity in the last 6 months -->
+    <div class="customer__cloud">
+      {{#each this}}
+        <a href="/company/{{{ _id }}}">{{{ name }}}</a>
+      {{/each}}
+    </div>
+  </menu>
+</article>

@@ -1,0 +1,14 @@
+// Templates are building blocks and don’t stand on their own and rarely describe look and feel.
+// Templates are single, repeatable patterns that can be put together to form a component.
+// A template is something you wouldn’t ever need to target in your application logic, and therefore can be safely extended with a preprocessor.
+
+%container {
+  @include container;
+  @include each-layout {
+    @include set-container-width;
+  }
+  padding: {
+    left: $grid-padding;
+    right: $grid-padding;
+  }
+}

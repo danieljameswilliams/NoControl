@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>NoControl - SCRUM for No Zebra</title>
+
+  <!-- TODO: Replace this <link> with compressed inline CSS using Grunt -->
+  <link rel="stylesheet" href="/assets/stylesheets/page_init.css" media="screen">
+</head>
+<body class="js-listen-to-keyboard">
+  <header class="header">
+    <div class="header__logo">
+      <a href="/">
+        <img src="/assets/images/logo.png" alt="">
+      </a>
+    </div>
+    <div class="header__weeknum">
+      Uge <span class="weeknum__value js-weeknum__value">36</span>
+    </div>
+    <form class="header__sprint-select js-header__sprint-select" action="/sprint" method="GET">
+      <input type="hidden" name="async" value="false">
+      Sprint
+      <select class="sprint-select__weeknum js-sprint-select__weeknum" name="sprint_id">
+        <option value="11">11</option>
+        <option value="12" selected>12*</option>
+        <option value="13">13</option>
+      </select>
+      <label>
+        <strong>Team <span><u>2</u>56</span></strong>
+        <input type="radio" class="quick__search-value js-quick__search-value" name="sprint_team" data-keycode="50" value="256">
+      </label>
+      <label>
+        <strong>Team <span><u>D</u>igital Heroes</span></strong>
+        <input type="radio" class="quick__search-value js-quick__search-value" name="sprint_team" data-keycode="68" value="digitalheroes">
+      </label>
+    </form>
+  </header>
+  <div class="bodyDOM">{{{ body }}}</div>
+  <!-- Scenario: Developer goes to customer, gets info of [customer satisfaction by smiley], [bug report count], [ROI] -->
+
+  <!-- TODO: Run these scripts async in a bundle when DOM is loaded -->
+  <script type="text/javascript" src="/assets/javascripts/lib/jquery.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/lib/handlebars.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/lib/history.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/templates.js"></script>
+
+  <script type="text/javascript" src="/assets/javascripts/global/_templating.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/partials/_get-sprint.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/page_load.js"></script>
+</body>
+</html>

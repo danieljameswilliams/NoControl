@@ -1,0 +1,13 @@
+.header {
+  width: 100%;
+  background-color: #1e262b;
+  color: #ffffff;
+  overflow: hidden;
+  @include box-sizing(border-box);
+  @include rem(padding, 20px);
+
+  &__logo {
+    float: left;
+    max-height: 100%;
+  }
+}
