@@ -17,17 +17,14 @@ app.engine( 'handlebars', exphbs(
 app.set('view engine', 'handlebars');
 app.set('views', viewsFolder);
 
-var schema = mongoose.Schema;
-var schemasAndModels = require('./schemas/_all')(schema, mongoose);
-
+var models = require('./models/_all')(mongoose);
 var client = mongoose.connect('mongodb://nozebra:jyj49gfa@kahana.mongohq.com:10019/nozebra_nocontrol');
 var db = mongoose.connection;
 
 db.once('open', function() {
-  var frontpage = require('./routes/_frontpage')(app, db, url, schema, schemasAndModels);
-  var frontpage = require('./routes/_company')(app, db, url, schema, schemasAndModels);
-  var sprint = require('./routes/_sprint')(app, db, url, schema, schemasAndModels);
-  var version = require('./routes/_version')(app, db, url, schema, schemasAndModels);
+  var frontpage = require('./routes/_frontpage')(app, url, models);
+  var frontpage = require('./routes/_company')(app, url, models);
+  var sprint = require('./routes/_sprint')(app, url, models);
 });
 
 app.listen(3000);

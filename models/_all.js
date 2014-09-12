@@ -1,4 +1,6 @@
-module.exports = function(Schema, mongoose) {
+module.exports = function(mongoose) {
+  var Schema = mongoose.Schema;
+
   var schemaCompany = new Schema({
     name: String,
     manager: String,
@@ -31,13 +33,7 @@ module.exports = function(Schema, mongoose) {
   var modelStories = mongoose.model('stories', schemaStories);
 
   return {
-    schemas: {
-      company: schemaCompany,
-      stories: schemaStories
-    },
-    models: {
-      company: modelCompany,
-      stories: modelStories
-    }
+    company: modelCompany,
+    stories: modelStories
   };
 }

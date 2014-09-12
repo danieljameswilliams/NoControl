@@ -1,9 +1,9 @@
-module.exports = function(app, db, url, Schema, schemasAndModels) {
+module.exports = function(app, url, models) {
   app.get('/company/:companyID', function (req, res) {
-    var urlParameters = url.parse(req.url, true);
+    var querystring = url.parse(req.url, true);
     var companyID = req.params.companyID;
 
-    schemasAndModels.models.stories.find({ company_id: companyID }, function (err, result) {
+    models.stories.find({ company_id: companyID }, function (err, result) {
       var objectedResult = {
         icebox: [],
         backlog: {
@@ -33,7 +33,7 @@ module.exports = function(app, db, url, Schema, schemasAndModels) {
         }
       }
 
-      if( urlParameters.query.async ) {
+      if( querystring.query.async ) {
         res.json( objectedResult );
       }
       else {

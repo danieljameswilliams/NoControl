@@ -1,9 +1,10 @@
-module.exports = function(app, db, url, Schema, schemasAndModels) {
-  app.get('/', function (req, res) {
-    var urlParameters = url.parse(req.url, true);
+module.exports = function(app, url, models) {
 
-    schemasAndModels.models.company.find({}, function (err, result) {
-      if( urlParameters.query.async ) {
+  app.get('/', function (req, res) {
+    var querystring = url.parse(req.url, true);
+
+    models.company.find({}, function (err, result) {
+      if( querystring.query.async ) {
         res.json( result );
       }
       else {
