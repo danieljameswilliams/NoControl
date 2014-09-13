@@ -12,7 +12,21 @@ app.engine( 'handlebars', exphbs(
 {
   defaultLayout: viewsFolder + '/layouts/master',
   layoutsDir: viewsFolder + '/layouts',
-  partialsDir: viewsFolder + '/partials'
+  partialsDir: viewsFolder + '/partials',
+  helpers: {
+    ifCond: function(v1, v2, options) {
+      if(v1 === v2) {
+        return options.fn(this);
+      }
+      return options.inverse(this);
+    },
+    ifNotCond: function(v1, v2, options) {
+      if(v1 !== v2) {
+        return options.fn(this);
+      }
+      return options.inverse(this);
+    }
+  }
 }) );
 app.set('view engine', 'handlebars');
 app.set('views', viewsFolder);

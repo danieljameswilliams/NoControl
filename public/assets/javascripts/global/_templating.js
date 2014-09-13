@@ -10,8 +10,8 @@ App.Template = function() {
    * @param  {string} template [the template from either ls or directly from the server (ex: /views/sprint.handlebars)]
    * @return {void}
    */
-  function renderPage(element, data, template) {
-    var render = Handlebars.compile( template );
+  function renderPage(element, data, templateName) {
+    var render = templates( templateName );
     var html   = render( data );
     element.html(html);
   }

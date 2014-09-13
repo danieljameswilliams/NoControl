@@ -1,29 +1,26 @@
-<div class="icebox__container">
-  {{#each icebox}}
-  {{>story}}
-  {{/each}}
-</div>
-<hr>
-<div class="backlog__container">
-  <div class="backlog__todo">
-    {{#each backlog.todo}}
-    {{>story}}
-    {{/each}}
-  </div>
-  <div class="backlog__inprogress">
-    {{#each backlog.inProgress}}
-    {{>story}}
-    {{/each}}
-  </div>
-  <div class="backlog__qa">
-    {{#each backlog.qa}}
-    {{>story}}
+<div class="projects__container">
+  <h1>Igangv&aelig;rende projekter for denne kunde:</h1>
+  <div class="projects__list js-projects__list">
+    {{#each projects}}
+      {{>project}}
     {{/each}}
   </div>
 </div>
 <hr>
-<div class="done__container">
-  {{#each done}}
-  {{>story}}
+<h1>Alle opgaver for denne kunde</h1>
+{{#each projects}}
+  {{#each stories}}
+    {{#ifNotCond this.status 4}}
+      {{>company_story}}
+    {{/ifNotCond}}
   {{/each}}
-</div>
+{{/each}}
+<hr>
+<h1>Alle færdige opgaver for denne kunde</h1>
+{{#each projects}}
+  {{#each stories}}
+    {{#ifCond this.status 4}}
+      {{>company_story}}
+    {{/ifCond}}
+  {{/each}}
+{{/each}}

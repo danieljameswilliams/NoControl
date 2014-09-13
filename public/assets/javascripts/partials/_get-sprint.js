@@ -32,8 +32,6 @@ App.SprintLoad = function() {
   }
 
   function onSprintFormSubmitted(event) {
-    // TODO: Show the chosen sprint
-    // Execute on client-side, but secure that it has a push-state with fallback
     var sprintNum  = dom.$headerSprintNum.val();
     var sprintTeam = dom.$headerSprintButton.filter('.is-selected').val();
 
@@ -41,9 +39,7 @@ App.SprintLoad = function() {
 
     History.pushState( null, 'Sprint View', '/sprint/' + sprintNum + '/' + sprintTeam + '/' );
     $.get( '/sprint/' + sprintNum + '/' + sprintTeam + '/', { async: true }, function( data ) {
-      if( sprintTemplate.length !== null ) {
-        App.Template.renderPage(dom.$contentPlaceholder, data, sprintTemplate);
-      }
+      App.Template.renderPage(dom.$contentPlaceholder, data, 'sprint');
     } );
   }
 
