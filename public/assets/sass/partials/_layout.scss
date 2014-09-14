@@ -1,13 +1,89 @@
+body {
+  padding-top: 95px;
+}
+
 .header {
-  width: 100%;
   background-color: #1e262b;
   color: #ffffff;
   overflow: hidden;
+  position: fixed;
+    top: 0;
+    left: 0;
+  width: 100%;
   @include box-sizing(border-box);
+  @include no-select;
   @include rem(padding, 20px);
 
   &__logo {
     float: left;
     max-height: 100%;
   }
+}
+
+.sprint__container {
+  min-width: 1600px;
+  overflow-x: scroll;
+  padding: 20px;
+  @include no-select;
+}
+
+.done__list {
+  text-decoration: line-through;
+}
+
+.backlog__todo,
+.backlog__inprogress,
+.backlog__qa,
+.done__container,
+.icebox__container {
+  float: left;
+  padding: 20px;
+  width: percentage(1/5);
+  @include box-sizing(border-box);
+
+  h2 {
+    background-color: #e4e4e4;
+    display: block;
+    margin: 0;
+    padding: 20px 20px;
+    width: 100%;
+    @include box-sizing(border-box);
+  }
+}
+
+.icebox__list,
+.todo__list,
+.inprogress__list,
+.qa__list,
+.done__list {
+  background-color: #ffffff;
+  min-height: 50px;
+  padding: 20px 0;
+}
+
+.backlog__story {
+  width: 100%;
+  display: block;
+  padding: 0 20px;
+  margin-bottom: 20px;
+  @include box-sizing(border-box);
+}
+
+.story__inner {
+  background-color: #f1f1f1;
+  display: block;
+  padding: 20px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: bold;
+  @include box-sizing(border-box);
+
+  .is-dragging & {
+    background-color: #e4e4e4;
+  }
+}
+
+.ui-sortable-placeholder {
+  background-color: #d7d7d7;
+  margin: 0 20px 20px 20px;
 }

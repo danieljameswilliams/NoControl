@@ -2,16 +2,18 @@
 // Imports
 
 // Susy - for doing grids
-@import "susy";
+@import "susyone";
 
 // Dependensies
 @import "compass/css3";
 
 // Settings (imported before Compass stuff to allow overrides of defaults)
 @import "core/settings";
+@import "core/templates";
 
 // Project defaults
 @import "lib/normalize";
+@import "lib/jquery-ui";
 @import "core/base";
 
 // Partials
