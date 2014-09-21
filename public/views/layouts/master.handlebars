@@ -7,7 +7,7 @@
   <!-- TODO: Replace this <link> with compressed inline CSS using Grunt -->
   <link rel="stylesheet" href="/assets/stylesheets/page_init.css" media="screen">
 </head>
-<body class="js-listen-to-keyboard">
+<body class="js-listen-to-keyboard" data-company="{{ companyID }}">
   <header class="header">
     <div class="header__logo">
       <a href="/">
@@ -51,6 +51,12 @@
   <script type="text/javascript" src="/assets/javascripts/_old/global/_keyboard.js"></script>
   <script type="text/javascript" src="/assets/javascripts/_old/partials/_get-sprint.js"></script>
 
+  <script type="text/javascript" src="/assets/javascripts/models/story.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/models/company-note.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/collections/notes.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/collections/stories.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/views/app.js"></script>
+  <script type="text/javascript" src="/assets/javascripts/views/company/notes.js"></script>
   <script type="text/javascript" src="/assets/javascripts/views/story/list.js"></script>
 
   <script type="text/javascript" src="/assets/javascripts/page_load.js"></script>

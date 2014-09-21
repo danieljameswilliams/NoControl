@@ -1,5 +1,6 @@
 var express = require('express');
 var exphbs = require('express-handlebars');
+var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var path = require('path');
 var url = require('url');
@@ -7,7 +8,9 @@ var url = require('url');
 var app = express();
 var viewsFolder = __dirname + '/public/views';
 
-app.use(express.static(__dirname + '/public'));
+app.use( express.static(__dirname + '/public') );
+app.use( bodyParser.urlencoded( { extended: false } ) );
+app.use( bodyParser.json() );
 app.engine( 'handlebars', exphbs(
 {
   defaultLayout: viewsFolder + '/layouts/master',
@@ -37,8 +40,9 @@ var db = mongoose.connection;
 
 db.once('open', function() {
   var frontpage = require('./routes/_frontpage')(app, url, models);
-  var frontpage = require('./routes/_company')(app, url, models);
+  var company = require('./routes/_company')(app, url, models);
   var sprint = require('./routes/_sprint')(app, url, models);
+  var stories = require('./routes/_stories')(app, url, models);
 });
 
 app.listen(3000);

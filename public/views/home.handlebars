@@ -3,12 +3,31 @@
     <input type="text" name="quick__search-value">
   </form>
   <menu class="navigation__quick">
-    <h1>Kunder</h1>
+
     <!-- Idea: Word cloud, size based on activity in the last 6 months -->
+    <h1>Kunder - Word Cloud</h1>
     <div class="customer__cloud">
       {{#each this}}
         <a href="/company/{{{ _id }}}">{{{ name }}}</a>
       {{/each}}
     </div>
   </menu>
+
+  <!-- Idea: Get Pressure Stat from sprint collection and show it in a graph -->
+  <h1>Mængde af opgaver</h1>
+  <form action="">
+    <label>
+      <strong>Dig</strong>
+      <input type="radio">
+    </label>
+    <label>
+      <strong>Team</strong>
+      <input type="radio">
+    </label>
+    <label>
+      <strong>Firma</strong>
+      <input type="radio">
+    </label>
+  </form>
+
 </article>

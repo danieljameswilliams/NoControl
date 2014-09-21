@@ -1,7 +1,7 @@
 <div class="sprint__container">
   <div class="icebox__container">
     <h2>Icebox</h2>
-    <div class="icebox__list js-story__column">
+    <div class="icebox__list js-story__column" data-status="0">
       {{#each icebox}}
         {{>story}}
       {{/each}}
@@ -10,7 +10,7 @@
   <div class="backlog__container">
     <div class="backlog__todo">
       <h2>Todo</h2>
-      <div class="todo__list js-story__column">
+      <div class="todo__list js-story__column"  data-status="1">
         {{#each backlog.todo}}
           {{>story}}
         {{/each}}
@@ -18,7 +18,7 @@
     </div>
     <div class="backlog__inprogress">
       <h2>In Progress</h2>
-      <div class="inprogress__list js-story__column">
+      <div class="inprogress__list js-story__column" data-status="2">
         {{#each backlog.inProgress}}
           {{>story}}
         {{/each}}
@@ -26,7 +26,7 @@
     </div>
     <div class="backlog__qa">
       <h2>QA</h2>
-      <div class="qa__list js-story__column">
+      <div class="qa__list js-story__column" data-status="3">
         {{#each backlog.qa}}
           {{>story}}
         {{/each}}
@@ -35,7 +35,7 @@
   </div>
   <div class="done__container">
     <h2>Done</h2>
-    <div class="done__list js-story__column">
+    <div class="done__list js-story__column" data-status="4">
       {{#each done}}
         {{>story}}
       {{/each}}

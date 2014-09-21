@@ -1,31 +1,43 @@
-var Views = Views || {};
+var App = App || {};
 
-Views.Story = function() {
-  var list = Backbone.View.extend();
+//Nested Views
+App.StoryListView = Backbone.View.extend({
+  el: $('.backlog__story'),
 
-  var list_item = Backbone.View.extend({
-    tagName: 'div',
-    className: 'backlog__story',
-    events: {
-      'drop' : 'drop'
+  render: function() {
+    this.collection.each(this.appendModelView, this);
+    return this;
+  },
+  initialize: function() {
+    _initSortable();
+    var storiesList = new App.Stories();
+    storiesList.fetch();
+
+    _.bindAll(this, 'drop');
+  },
+  events: {
+    'drop' : 'drop'
+  },
+  drop: function(event, item) {
+    console.log(this.model);
+    // console.log(item);
+    // this.$el.trigger( 'update-sort' [this.model, item.index] );
+    //console.log( 'Dropped' );
+  }
+});
+
+$(function() {
+  new App.StoryListView();
+})
+
+function _initSortable() {
+  $( '.js-story__column' ).sortable({
+    connectWith: '.js-story__column',
+    start: function (event, ui) {
+      ui.item.addClass('is-dragging');
     },
-    drop: function(event, index) {
-      console.log( 'Dropped' );
-      // Update Column Order
-      //this.model.save( { position: index }, { success, error });
-
-      // Reset View for the next sortable
-      ui.item.removeClass('is-dragging');
-      $('html').unbind('mousemove', ui.item.data('move_handler'));
-      ui.item.removeData('move_handler');
+    stop: function (event, ui) {
+      ui.item.trigger( 'drop', ui.item);
     }
   });
-
-  var detail = Backbone.View.extend();
-
-  return {
-    list      : list,
-    list_item : list_item,
-    detail    : detail
-  };
 }

@@ -1,3 +1,16 @@
+<div class="company__notes">
+  <h1>Notater til denne kunde:</h1>
+  <div class="notes__list">
+    {{#each notes}}
+      {{>note}}
+    {{/each}}
+  </div>
+  <form class="notes__create-form" action="" method="POST">
+    <input type="text" name="notes__create-input">
+    <button type="submit">Tilf&oslash;j</button>
+  </form>
+</div>
+
 <div class="projects__container">
   <h1>Igangv&aelig;rende projekter for denne kunde:</h1>
   <div class="projects__list js-projects__list">
