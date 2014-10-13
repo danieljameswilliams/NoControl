@@ -35,7 +35,7 @@ app.set('view engine', 'handlebars');
 app.set('views', viewsFolder);
 
 var models = require('./models/_all')(mongoose);
-var client = mongoose.connect('mongodb://nozebra:jyj49gfa@kahana.mongohq.com:10019/nozebra_nocontrol');
+var client = mongoose.connect('{SHOULD CONTAIN CONNECTIONSTRING}');
 var db = mongoose.connection;
 
 db.once('open', function() {
